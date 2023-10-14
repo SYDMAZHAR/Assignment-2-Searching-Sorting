@@ -1,0 +1,95 @@
+#Binary Search:
+
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1  # Element not found
+
+
+#2.Merge Sort:
+
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        left_half = arr[:mid]
+        right_half = arr[mid:]
+
+        merge_sort(left_half)
+        merge_sort(right_half)
+
+        i = j = k = 0
+
+        while i < len(left_half) and j < len(right_half):
+            if left_half[i] < right_half[j]:
+                arr[k] = left_half[i]
+                i += 1
+            else:
+                arr[k] = right_half[j]
+                j += 1
+            k += 1
+
+        while i < len(left_half):
+            arr[k] = left_half[i]
+            i += 1
+            k += 1
+
+        while j < len(right_half):
+            arr[k] = right_half[j]
+            j += 1
+            k += 1
+
+#3.Quick Sort:
+
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = []
+    right = []
+    for item in arr[1:]:
+        if item < pivot:
+            left.append(item)
+        else:
+            right.append(item)
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+#4.Insertion Sort:
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+#5.Sorting a list of strings like a dictionary:
+
+def sort_strings_like_dict(strings):
+    return sorted(strings)
+# Example usage
+arr = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+binary_search_result = binary_search(arr, 4)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+merge_sort(arr)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+quick_sort_result = quick_sort(arr)
+
+arr = [38, 27, 43, 3, 9, 82, 10]
+insertion_sort(arr)
+
+strings = ["apple", "banana", "cherry", "date", "grape"]
+sorted_strings = sort_strings_like_dict(strings)
+
+
